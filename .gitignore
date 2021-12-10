@@ -141,8 +141,5 @@ kernel/configs/android-*.cfg
 drivers/oneplus/
 include/linux/oem
 
-# Tech package directories
-techpack/
-
 # OP SLA feature
 opslalib/slalib
