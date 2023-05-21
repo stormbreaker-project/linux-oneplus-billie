@@ -1,6 +1,10 @@
+ARCH=arm64
 BRANCH=android-4.19-stable
 KERNEL_DIR=common
 
+CROSS_COMPILE=aarch64-linux-android-
+CROSS_COMPILE_ARM32=arm-linux-androideabi-
+CROSS_COMPILE_COMPAT=$CROSS_COMPILE_ARM32
 CC=clang
 LD=ld.lld
 NM=llvm-nm
@@ -9,6 +13,17 @@ CLANG_PREBUILT_BIN=prebuilts-master/clang/host/linux-x86/clang-r383902/bin
 BUILDTOOLS_PREBUILT_BIN=build/build-tools/path/linux-x86
 
 EXTRA_CMDS=''
+LD_LIBRARY_PATH=${ROOT_DIR}/prebuilts-master/clang/host/linux-x86/clang-r383902/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN=prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
+LINUX_GCC_CROSS_COMPILE_ARM32_PREBUILTS_BIN=prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
+LINUX_GCC_CROSS_COMPILE_COMPAT_PREBUILTS_BIN=$LINUX_GCC_CROSS_COMPILE_ARM32_PREBUILTS_BIN
+LIBUFDT_PREBUILTS_BIN=prebuilts-master/misc/linux-x86/libufdt
+DTC_EXT=${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/bin/dtc
+export DTC_EXT
+DTC_OVERLAY_TEST_EXT=${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/bin/ufdt_apply_overlay
+export DTC_OVERLAY_TEST_EXT
+
 STOP_SHIP_TRACEPRINTK=1
 IN_KERNEL_MODULES=1
 DO_NOT_STRIP_MODULES=1
