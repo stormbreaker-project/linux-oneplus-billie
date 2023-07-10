@@ -409,6 +409,9 @@ USERINCLUDE    := \
 		-I$(objtree)/include/generated/uapi \
                 -include $(srctree)/include/linux/kconfig.h
 
+USERINCLUDE     += \
+                -I$(srctree)/techpack/billie/include/uapi
+
 # Use LINUXINCLUDE when you must reference the include/ directory.
 # Needed to be compatible with the O= option
 LINUXINCLUDE    := \
@@ -416,8 +419,10 @@ LINUXINCLUDE    := \
 		-I$(objtree)/arch/$(SRCARCH)/include/generated \
 		$(if $(KBUILD_SRC), -I$(srctree)/include) \
 		-I$(objtree)/include \
-		-I$(srctree)/drivers/oneplus/include \
 		$(USERINCLUDE)
+
+LINUXINCLUDE    += \
+                -I$(srctree)/techpack/billie/include
 
 KBUILD_AFLAGS   := -D__ASSEMBLY__
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
