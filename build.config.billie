@@ -1,0 +1,4 @@
+KERNEL_DIR=private/msm-oneplus
+BUILD_BOOT_IMG=true
+. ${ROOT_DIR}/${KERNEL_DIR}/build.config.billie.common.clang
+#POST_DEFCONFIG_CMDS="check_defconfig"
