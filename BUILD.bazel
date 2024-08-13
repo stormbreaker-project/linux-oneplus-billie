@@ -1,0 +1,35 @@
+package(
+    default_visibility = [
+        "//visibility:public",
+    ],
+)
+
+load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
+load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
+
+load(
+    "//build/kernel/kleaf:kernel.bzl",
+    "kernel_build",
+)
+load("@kernel_toolchain_info//:dict.bzl", "BRANCH", "CLANG_VERSION")
+
+kernel_build(
+   name = "kernel_billie",
+   srcs = glob(
+       ["**"],
+       exclude = [
+           "**/BUILD.bazel",
+           "**/*.bzl",
+           ".git/**",
+       ],
+   ),
+    outs = [
+        "Image",
+        "System.map",
+        "modules.builtin",
+        "modules.builtin.modinfo",
+        "vmlinux",
+        "vmlinux.symvers",
+    ],
+   build_config = "build.config.billie",
+)
